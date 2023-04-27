@@ -1,4 +1,4 @@
-export const textVariant = (delay: number) => {
+export const textVariant = (delay?: number) => {
   return {
     hidden: {
       y: -50,
@@ -62,7 +62,7 @@ export const zoomIn = (delay: number, duration: number) => {
   };
 };
 
-export const slideIn = (direction: string, type: string, delay: string, duration: string) => {
+export const slideIn = (direction: string, type: string, delay: number, duration: number) => {
 
   const directionValue: Record<string, string> = {
     left: "-100%",
@@ -89,7 +89,7 @@ export const slideIn = (direction: string, type: string, delay: string, duration
   };
 };
 
-export const staggerContainer = (staggerChildren: any, delayChildren: number) => {
+export const staggerContainer = (staggerChildren?: any, delayChildren?: number) => {
   return {
     hidden: {},
     show: {

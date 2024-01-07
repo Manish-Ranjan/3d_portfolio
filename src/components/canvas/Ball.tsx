@@ -28,7 +28,6 @@ const Ball: FC<{ imageUrl: any }> = (props) => {
           map={decal}
           position={[0, 0, 1]}
           rotation={[2 * Math.PI, 0, 6.25]}
-          flatShading
         />
       </mesh>
     </Float>

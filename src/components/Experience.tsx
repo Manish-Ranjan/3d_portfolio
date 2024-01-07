@@ -15,7 +15,7 @@ import { FC } from "react";
 interface IExperienceProps {
   title: string;
   company_name: string;
-  icon: string;
+  icon: string | null;
   iconBg: string;
   date: string;
   points: string[];

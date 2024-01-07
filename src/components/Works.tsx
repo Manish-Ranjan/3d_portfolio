@@ -1,4 +1,4 @@
-import Tilt from "react-tilt";
+import { Tilt } from "react-tilt";
 import { motion } from "framer-motion";
 
 import { styles } from "../styles";
@@ -8,10 +8,22 @@ import { github } from "../assets";
 import { fadeIn, textVariant } from "../utils";
 import { FC } from "react";
 
-const ProjectCard: FC<typeof projects[0] & { index: number }> = (props) => {
-  const { index, name, description, tags, image, source_code_link } = props;
+const ProjectCard: FC<(typeof projects)[0] & { index: number }> = (props) => {
+  const {
+    index,
+    name,
+    description,
+    tags,
+    image,
+    source_code_link,
+    deployed_link,
+  } = props;
   return (
-    <motion.div variants={fadeIn("up", "spring", index * 0.5, 0.75)}>
+    <motion.div
+      onClick={() => window.open(deployed_link, "_blank")}
+      variants={fadeIn("up", "spring", index * 0.5, 0.75)}
+      className="cursor-pointer"
+    >
       <Tilt
         options={{
           max: 45,
@@ -74,8 +86,12 @@ const Works = () => {
         </motion.p>
       </div>
       <div className="mt-20 flex flex-wrap gap-7">
-        {projects.map((project, index) => (
-          <ProjectCard key={`project-${index}`} index={index} {...project} />
+        {projects?.map((project, index) => (
+          <ProjectCard
+            key={`project-${project.name}`}
+            index={index}
+            {...project}
+          />
         ))}
       </div>
     </>

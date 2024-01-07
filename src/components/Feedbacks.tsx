@@ -6,7 +6,7 @@ import { testimonials } from "../constants";
 import { fadeIn, textVariant } from "../utils";
 import { FC } from "react";
 
-const FeedbackCard: FC<typeof testimonials[0] & { index: number }> = (
+const FeedbackCard: FC<(typeof testimonials)[0] & { index: number }> = (
   props
 ) => {
   const { testimonial, index, designation, company, name, image } = props;
@@ -25,14 +25,16 @@ const FeedbackCard: FC<typeof testimonials[0] & { index: number }> = (
               {name}
             </p>
             <p className="mt-1 text-secondary text-[12px]">
-              {designation} of {company}
+              {designation} {company ? `of ${company}` : ""}
             </p>
           </div>
-          <img
-            src={image}
-            alt={`feedback-by-${name}`}
-            className="w-10 h-10 rounded-full object-cover"
-          />
+          {image ? (
+            <img
+              src={image}
+              alt={`feedback-by-${name}`}
+              className="w-10 h-10 rounded-full object-cover"
+            />
+          ) : null}
         </div>
       </div>
     </motion.div>
@@ -40,6 +42,7 @@ const FeedbackCard: FC<typeof testimonials[0] & { index: number }> = (
 };
 
 const Feedbacks = () => {
+  if (!testimonials?.length) return null;
   return (
     <div className="mt-12 bg-black-100 rounded-[20px]">
       <div
@@ -51,7 +54,7 @@ const Feedbacks = () => {
         </motion.div>
       </div>
       <div className={`${styles.paddingX} -mt-20 pb-14 flex flex-wrap gap-7`}>
-        {testimonials.map((testimonial, index) => (
+        {testimonials?.map((testimonial, index) => (
           <FeedbackCard key={testimonial.name} index={index} {...testimonial} />
         ))}
       </div>
